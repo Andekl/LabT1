@@ -6,7 +6,12 @@ namespace LabT1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Account account = new Account(5000);
+
+            account.Deposit(2);
+            Console.WriteLine(account.Balance);
+
+            Console.ReadKey();
         }
     }
 }
