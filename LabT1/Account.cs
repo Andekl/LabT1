@@ -33,15 +33,28 @@ namespace LabT1
                 throw new Exception("Must deposit a value that is greater than 0");
             }
             else Balance += amount;
-            
+
         }
 
         public void Withdraw(double amount)
         {
-            if(Balance >= amount)
+            if (Balance < amount)
             {
-                Balance -= amount;
+                throw new Exception("You can max withdraw " + Balance);
             }
+            else if (amount <= 0)
+            {
+                throw new Exception("Can only withdraw a value that is greater than 0");
+            }
+            else if (double.IsNaN(amount))
+            {
+                throw new Exception("Can only withdraw a number");
+            }
+            else if (double.IsInfinity(amount) || double.IsNegativeInfinity(amount) || double.IsPositiveInfinity(amount))
+            {
+                throw new Exception("Can't withdraw infinity");
+            }
+            else Balance -= amount;
 
         }
 

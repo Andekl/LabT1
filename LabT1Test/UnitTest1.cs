@@ -69,7 +69,6 @@ namespace LabT1Test
             });
         }        
 
-
         [Fact]//Withdraw
         public void ShouldWithdrawAmountFromBalance()
         {
@@ -77,6 +76,60 @@ namespace LabT1Test
             double exptected = 8;
             double actual = account.Balance;
             Assert.Equal(exptected, actual);
+        }
+
+        [Fact]//Withdraw
+        public void ShouldHandleWithdrawIfAmountIsGreaterThanBalance()
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                account.Withdraw(20);
+            });
+        }
+
+        [Fact]//Withdraw
+        public void ShouldHandleWithdrawIfAmountIsLessThanZero()
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                account.Withdraw(-2);
+            });
+        }
+
+        [Fact]//Withdraw
+        public void ShouldHandleWithdrawIfAmountIsZero()
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                account.Withdraw(0);
+            });
+        }
+
+        [Fact]//Withdraw
+        public void ShouldHandleWithdrawIfAmountIsNaN()
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                account.Withdraw(double.NaN);
+            });
+        }
+
+        [Fact]//Withdraw
+        public void ShouldHandleWithdrawIfAmountIsNegativeInfinity()
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                account.Withdraw(double.NegativeInfinity);
+            });
+        }
+
+        [Fact]//Withdraw
+        public void ShouldHandleWithdrawIfAmountIsPositiveInfinity()
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                account.Withdraw(double.PositiveInfinity);
+            });
         }
 
         [Fact]//Transfer
